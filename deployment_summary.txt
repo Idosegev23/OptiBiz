@@ -1,0 +1,19 @@
+AWS Deployment Steps:
+1. Create an AWS account
+2. Launch an EC2 instance
+3. Configure security groups
+4. Install dependencies
+
+GCP Deployment Steps:
+1. Prepare your environment by cloning a sample app and setting up Python
+2. Download Cloud SQL Auth proxy to connect to Cloud SQL from your local machine
+3. Create backing services, including setting up a Cloud SQL for PostgreSQL instance and storing secret values in Secret Manager
+4. Run the app on your local computer and use the Django admin console
+5. Deploy the app to the App Engine standard environment
+
+Azure Deployment Steps:
+1. Create a web app in Azure App Service
+2. Configure your local environment
+3. Deploy your code to Azure
+4. Browse to the app
+5. Stream logs

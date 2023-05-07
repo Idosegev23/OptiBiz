@@ -1,0 +1,49 @@
+OptiBiz Database Schema Design:
+
+1. Users Table:
+   - user_id (Primary Key)
+   - username
+   - password (hashed)
+   - email
+   - first_name
+   - last_name
+   - role
+
+2. Organizations Table:
+   - organization_id (Primary Key)
+   - organization_name
+   - address
+   - phone
+
+3. Projects Table:
+   - project_id (Primary Key)
+   - project_name
+   - organization_id (Foreign Key)
+   - start_date
+   - end_date
+   - status
+
+4. Inventory Table:
+   - inventory_id (Primary Key)
+   - item_name
+   - item_description
+   - quantity
+   - organization_id (Foreign Key)
+
+5. Tasks Table:
+   - task_id (Primary Key)
+   - task_name
+   - project_id (Foreign Key)
+   - user_id (Foreign Key)
+   - start_date
+   - end_date
+   - status
+
+6. Reports Table:
+   - report_id (Primary Key)
+   - report_name
+   - organization_id (Foreign Key)
+   - user_id (Foreign Key)
+   - creation_date
+   - report_data
+

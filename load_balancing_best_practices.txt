@@ -1,0 +1,7 @@
+Best practices for load balancing in web and mobile applications include:
+1. Placing backends close to clients
+2. Enabling caching with Cloud CDN
+3. Selecting appropriate forwarding rule and backend service protocols
+4. Setting a recommended connection duration
+5. Choosing the right balancing mode
+6. Configuring session affinity

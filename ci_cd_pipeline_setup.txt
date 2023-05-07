@@ -1,0 +1,12 @@
+To set up a CI/CD pipeline with GitHub Actions and AWS for a Python web application, follow these steps:
+
+1. Create a Django project locally with at least one view and a test case.
+2. Push your project to a GitHub repository.
+3. Create a ".github/workflows" folder in your project directory and add a YAML file (e.g., build_and_test.yml) with the appropriate content for building and testing.
+4. Commit and push your changes to the remote repository. GitHub Actions will now automatically run builds and tests on push or pull request to the main branch.
+5. Set up an AWS account and create an IAM user with "Administrator Access" permissions. Keep your AWS secret and access keys for later use.
+6. Set up your Elastic Beanstalk environment in AWS with the Python platform.
+7. Configure your project for Elastic Beanstalk by creating a ".ebextensions" folder and updating the ALLOWED_HOSTS setting in your settings.py file.
+8. Update your GitHub Actions workflow file with a deployment job that uses the einaregilsson/beanstalk-deploy@v20 action. Provide the necessary information, such as application name, environment name, access key id, secret access key, and server region. Store sensitive data like access key id and secret access key as secrets in your GitHub repository.
+
+After completing these steps, your code will be automatically deployed to the Elastic Beanstalk instance on AWS whenever you push or create a pull request to the main branch.

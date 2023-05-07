@@ -1,0 +1,5 @@
+- Use JavaScript to add interactivity and functionality to the website, such as dropdown menus, hover effects, scroll-to-top buttons, and form validation
+- Use JavaScript to manipulate the DOM and to respond to user events, such as clicks, scrolls, and inputs
+- Use JavaScript frameworks and libraries, such as jQuery and React, to speed up the development process and to ensure compatibility and consistency across different browsers and devices
+- Use best practices and standards for web development, such as progressive enhancement, graceful degradation, and accessibility guidelines, to ensure that the website is accessible, compatible, and efficient
+- Test the website on different devices and screen sizes, and use tools and techniques to improve its performance and accessibility

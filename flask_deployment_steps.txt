@@ -1,0 +1,10 @@
+To deploy a Flask app to a cloud-based hosting provider like Google App Engine, follow these steps:
+
+1. Create a Google Account and a new project in the Google Cloud Platform Console.
+2. Install the Google Cloud SDK.
+3. Create three new files in your project folder: app.yaml, appengine_config.py, and requirements.txt.
+4. Add the necessary content to each file.
+5. Inside your virtual environment, install the new dependencies from requirements.txt using the command: `pip install -t lib -r requirements.txt`
+6. Deploy the application to Google App Engine using the command: `gcloud app deploy` (you can also specify the project ID using `--project [ID of Project]`)
+
+After deployment, your application will be accessible at "your_project_id".appspot.com.

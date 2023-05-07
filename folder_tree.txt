@@ -1,0 +1,8 @@
+OptiBiz
+|- Data
+|- Models
+|- Notebooks
+|- Reports
+|- Scripts
+|- How2Save
+|- auto_gpt_workspace

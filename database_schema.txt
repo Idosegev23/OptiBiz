@@ -1,0 +1,70 @@
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX users_email_idx ON users(email);
+
+-- Users table stores user information. Each user can be part of multiple organizations and projects.
+CREATE TABLE organizations (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Organizations table stores organization information. Each organization can have multiple projects.
+CREATE TABLE projects (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    organization_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (organization_id) REFERENCES organizations (id)
+);
+
+CREATE INDEX projects_organization_id_idx ON projects(organization_id);
+
+-- Projects table stores project information. Each project can have multiple tasks and belongs to an organization.
+CREATE TABLE inventory (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    quantity INTEGER NOT NULL CHECK (quantity >= 0),
+    price REAL NOT NULL CHECK (price >= 0),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Inventory table stores inventory items information.
+CREATE TABLE tasks (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    project_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (project_id) REFERENCES projects (id)
+);
+
+CREATE INDEX tasks_project_id_idx ON tasks(project_id);
+
+-- Tasks table stores task information. Each task belongs to a project and can have multiple reports.
+CREATE TABLE reports (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    task_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (task_id) REFERENCES tasks (id)
+);
+
+CREATE INDEX reports_task_id_idx ON reports(task_id);
+
+-- Reports table stores report information. Each report belongs to a task.

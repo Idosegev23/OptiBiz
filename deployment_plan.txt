@@ -1,0 +1,8 @@
+Deployment Platform: AWS
+
+Deployment Steps:
+1. Create an AWS account
+2. Launch an EC2 instance
+3. Configure security groups
+4. Install dependencies
+5. Set up CI/CD pipelines

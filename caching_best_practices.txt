@@ -1,0 +1,9 @@
+The best practices for caching in web and mobile applications include:
+
+1. Use a caching strategy: Choose between Lazy Loading and Write-Through caching based on your application's requirements.
+2. Set Time-To-Live (TTL) values: TTL values help manage the cache by setting an expiration time for each key.
+3. Choose an eviction policy: Select an appropriate eviction policy based on your application's needs.
+4. Be aware of the thundering herd effect: To avoid this, prewarm the cache by running a script that performs the same requests as your application before adding new cache nodes or setting TTL values.
+5. Cache (almost) everything: Be cautious with caching data that needs to be up-to-date, such as an item's price during online checkout.
+6. Use caching technologies: Popular caching technologies include in-memory Key-Value NoSQL databases like Memcached and Redis.
+7. Monitor cache performance: Keep an eye on cache misses and other statistics to ensure your cache is effective and adjust your caching strategy as needed.

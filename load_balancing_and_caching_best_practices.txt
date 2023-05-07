@@ -1,0 +1,13 @@
+Best practices for load balancing and caching:
+
+1. Place backends close to clients.
+2. Enable caching with Cloud CDN.
+3. Forwarding rule protocol selection.
+4. Backend service protocol selection.
+5. Recommended connection duration.
+6. Balancing mode selection criteria.
+7. Configure session affinity.
+8. Distribute incoming requests across multiple servers or nodes using an appropriate type of load balancer and algorithm.
+9. Store frequently used or expensive data in a suitable cache type and policy to reduce requests and improve response time.
+10. Constantly monitor and optimize load balancing and caching using relevant metrics and tools.
+11. Test and benchmark the system's performance under different workloads using load testing, stress testing, and soak testing with appropriate tools.
