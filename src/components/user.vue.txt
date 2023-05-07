@@ -1,0 +1,116 @@
+<!-- src/components/User.vue -->
+<template>
+  <v-container>
+    <h1>User Management</h1>
+    <v-data-table
+      :headers="headers"
+      :items="users"
+      :loading="loading"
+      class="elevation-1"
+      @click:row="editUser"
+    >
+      <template v-slot:top>
+        <v-toolbar flat>
+          <v-spacer></v-spacer>
+          <v-dialog v-model="dialog" max-width="500px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">New User</v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="headline">{{ editedIndex === -1 ? 'New' : 'Edit' }} User</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field v-model="editedItem.email" label="E-mail"></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-toolbar>
+      </template>
+    </v-data-table>
+  </v-container>
+</template>
+
+<script>
+import http from '@/http';
+
+export default {
+  data() {
+    return {
+      loading: false,
+      headers: [
+        { text: 'Name', value: 'name' },
+        { text: 'E-mail', value: 'email' },
+      ],
+      users: [],
+      editedIndex: -1,
+      editedItem: {},
+      dialog: false,
+    };
+  },
+  created() {
+    this.fetchUsers();
+  },
+  methods: {
+    fetchUsers() {
+      this.loading = true;
+      http.get('/users')
+        .then(response => {
+          this.users = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
+    editUser(item) {
+      this.editedIndex = this.users.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+  this.dialog = true;
+},
+close() {
+  this.dialog = false;
+  setTimeout(() => {
+    this.editedItem = {};
+    this.editedIndex = -1;
+  }, 300);
+},
+save() {
+  if (this.editedIndex > -1) {
+    http.put(`/users/${this.editedItem.id}`, this.editedItem)
+      .then(response => {
+        Object.assign(this.users[this.editedIndex], response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  } else {
+    http.post('/users', this.editedItem)
+      .then(response => {
+        this.users.push(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+  this.close();
+},
+},
+};
+</script>
